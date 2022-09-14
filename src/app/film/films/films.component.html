@@ -1,0 +1,18 @@
+<h1>Films</h1>
+
+<ng-container *ngIf="films$ | async; else loadingTemplate">
+  <table>
+    <tr>
+      <th>Titre</th>
+      <th>Acteurs</th>
+    </tr>
+    <tr *ngFor="let film of films">
+      <td>{{ film.nom }}</td>
+      <td class="liste-acteurs">
+        <a *ngFor="let acteur of film.acteurs" [routerLink]="['acteur',acteur.id]">{{ acteur.nom }}</a>
+      </td>
+    </tr>
+  </table>
+</ng-container>
+
+<ng-template #loadingTemplate> Loading... </ng-template>

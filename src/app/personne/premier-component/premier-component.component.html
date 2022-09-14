@@ -1,0 +1,24 @@
+<ng-container *ngIf="personne$ | async; else personneInconnueTemplate">
+    <h1 appHighlight>{{'Infos sur la personne' | uppercase}}</h1>
+    <p>{{ personne.nom | lowercase }}</p>
+    <p [ngClass]="{ 'rouge': personne.age < 30, 'bleu': personne.age >= 30 }">La personne a {{personne.age}} ans</p>
+    <p>Elle est née {{personne.dateDeNaissance | date: 'à HH:mm, le d MMMM yyyy' | uppercase }}</p>
+    
+    <input [(ngModel)]="inputValue">
+    <button (click)="renommerPersonne()">Renommer</button>
+</ng-container>
+
+<ng-template #personneInconnueTemplate>
+    Personne inconnue
+</ng-template>
+
+
+<!--<button (click)="incrementNbrClick($event)">Vas y clique !</button>
+<p>Nombre de clicks : {{ nbrClick ? nbrClick : 'Pas encore de clicks'}}</p>
+
+<input [(ngModel)]="inputValue">
+
+<p>{{inputValue}}</p>
+
+
+<img [src]="imgUrl" [title]="nom">-->

@@ -1,0 +1,23 @@
+<!--<app-premier-component *ngFor="let personne of personnes" [personne]="personne" 
+[ngStyle]="{ color: 'rgb(0, ' + personne.color + ', 0)' }"
+(renommageEvent)="renommerPersonne(personne,$event)"></app-premier-component>
+
+<div [ngSwitch]="personnes[0].nom">
+    <p *ngSwitchCase="'Bob'">Coucou Bob</p>
+    <p *ngSwitchCase="'Bobby'">C'est bien Bobby le barbarre</p>
+    <p *ngSwitchDefault>Où qu'il est bob ?</p>
+</div>-->
+
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Age</th>
+    </tr>
+    <tr *ngFor="let personne of personnes">
+        <td class="lien-detail-personne" (click)="ouvertureDetailsPersonne(personne)">{{personne.nom}}</td>
+        <td>{{personne.age}}</td>
+    </tr>
+</table>
+
+
+<router-outlet></router-outlet>
