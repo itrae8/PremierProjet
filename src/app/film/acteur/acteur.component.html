@@ -1,9 +1,36 @@
 <h1>Acteur</h1>
 
 <ng-container *ngIf="acteur$ | async; else loadingTemplate">
-  <h2>Nom : {{acteur.nom}}</h2>
-  <p>Age : {{acteur.age}}</p>
-  <p>Pays de naissance : {{acteur.nationalite}}</p>
+  
+  <form [formGroup]="acteurForm" class="form-group">
+    <input hidden="true" id="id" type="text" formControlName="id" />
+
+    <div class="form-element">
+      <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="nom">
+      </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <mat-form-field appearance="fill">
+        <mat-label>Age</mat-label>
+        <input matInput formControlName="age">
+      </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <mat-form-field appearance="fill">
+        <mat-label>Nationalité</mat-label>
+        <input matInput formControlName="nationalite">
+      </mat-form-field>
+    </div>
+
+    <div class="action-buttons">
+      <button [disabled]="acteurForm.invalid" mat-raised-button color="primary" type="submit" (click)="onSubmitForm()">Enregistrer</button>
+    </div>
+  </form>
+
 </ng-container>
 
 <ng-template #loadingTemplate> Loading... </ng-template>

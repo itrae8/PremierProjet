@@ -14,4 +14,8 @@ export class FilmService {
   getFilms(): Observable<Film[]> {
     return this.httpClient.get<Film[]>(`${environment.urlBack}/films`);
   }
+
+  postFilm(film: Film): Observable<Film> {
+    return this.httpClient.post<Film>(`${environment.urlBack}/films`, film);
+  }
 }

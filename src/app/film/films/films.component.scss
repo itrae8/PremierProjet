@@ -27,3 +27,13 @@ td {
 ::ng-deep .mat-paginator-page-size-label{
   color: blue;
 }
+
+.form-creation-film{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-creation-film > *{
+  width: 250px;
+}
