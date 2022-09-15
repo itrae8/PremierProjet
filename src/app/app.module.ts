@@ -5,26 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import * as fr from '@angular/common/locales/fr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonneModule } from './personne/personne.module';
 import { SharedModule } from './shared/shared.module';
-import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     PersonneModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'fr-FR' }
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor() {

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { delay, forkJoin, Observable, tap } from 'rxjs';
 import { Acteur, ActeurFilm } from 'src/app/model/acteur.model';
 import { Film, FilmListe } from 'src/app/model/film.model';
@@ -14,6 +16,14 @@ export class FilmsComponent implements OnInit {
   films: FilmListe[] = [];
 
   films$!: Observable<any>;
+
+  displayedColumns = ['nom','acteurs']
+
+  displayedTilteColumns = ['Titre','Acteurs']
+
+  dataSource!: MatTableDataSource<FilmListe>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private filmService: FilmService,
@@ -34,7 +44,10 @@ export class FilmsComponent implements OnInit {
           });
           return {...film, acteurs: acteursAvecNom};
         });
+        this.dataSource = new MatTableDataSource(this.films);
+        this.dataSource.paginator = this.paginator;
       })
     );
   }
+
 }

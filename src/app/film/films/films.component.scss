@@ -1,11 +1,29 @@
-table,
+/*table,
 th,
 td {
   border: 1px solid black;
+}*/
+
+.liste-acteurs {
+  width: 300px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.liste-acteurs{
-    width: 300px;
-    display: flex;
-    justify-content: space-evenly;
+th,
+td {
+  text-align: center !important;
+}
+
+td {
+  min-width: 300px;
+}
+
+.paginator-films{
+  display: flex;
+  margin-top: 20px;
+}
+
+::ng-deep .mat-paginator-page-size-label{
+  color: blue;
 }
