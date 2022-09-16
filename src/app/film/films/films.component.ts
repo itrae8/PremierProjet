@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { delay, forkJoin, Observable, tap } from 'rxjs';
+import { delay, forkJoin, Observable, of, tap } from 'rxjs';
 import { ActeurFilm } from 'src/app/model/acteur.model';
 import { Film, FilmListe } from 'src/app/model/film.model';
 import { ActeurService } from 'src/app/shared/acteur.service';
@@ -39,12 +39,17 @@ export class FilmsComponent implements OnInit {
 
   ngOnInit(): void {
     this.films$ = forkJoin({
-      films: this.filmService.getFilms(),
-      acteurs: this.acteurService.getActeurs(),
+      films: sessionStorage.getItem('films') ? of(JSON.parse(sessionStorage.getItem('films')!) as Film[]) : this.filmService.getFilms(),
+      acteurs: sessionStorage.getItem('acteurs') ? of(JSON.parse(sessionStorage.getItem('acteurs')!) as ActeurFilm[]) :this.acteurService.getActeurs(),
     }).pipe(
-      // Renvoie la valeur émise après 500ms de délai
-      delay(500),
+     // On met le délai sur la requete des films pour voir l'effet du SessionStorage
+     // Obligé de mettre delai 0 sinon le traitement va trop vite et le paginator est undefined
+     delay(0),
       tap(({ films, acteurs }) => {
+        
+        sessionStorage.setItem('films', JSON.stringify(films));
+        sessionStorage.setItem('acteurs', JSON.stringify(acteurs));
+
         let filmsListe = films.map((film) => {
           let acteursAvecNom: ActeurFilm[] = film.acteurs.map((idActeur) => {
             return {

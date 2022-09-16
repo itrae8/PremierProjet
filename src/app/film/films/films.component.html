@@ -30,25 +30,25 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <form (ngSubmit)="creerFilm()" class="form-creation-film">
+  <!--<form (ngSubmit)="creerFilm()" class="form-creation-film">
 
     <h1>Ajouter un film : </h1>
 
     <mat-form-field appearance="fill">
       <mat-label>Id du film</mat-label>
-      <!--Ne pas oublier la balise name-->
+      <!--Ne pas oublier la balise name--><!--
       <input type="text" matInput [(ngModel)]="idFilmACreer" name="idFilmACreer">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Nom du film</mat-label>
-      <!--Ne pas oublier la balise name-->
+      <!--Ne pas oublier la balise name--><!--
       <input type="text" matInput [(ngModel)]="nomDuFilmACreer" name="nomDuFilmACreer">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Acteurs</mat-label>
-      <!--Ne pas oublier la balise name-->
+      <!--Ne pas oublier la balise name--><!--
       <mat-select [(ngModel)]="acteursDuFilmAcreer" name="acteursDuFilmAcreer" multiple>
         <mat-option *ngFor="let acteur of listeActeurs" [value]="acteur.id">
           {{acteur.nom}}
@@ -58,7 +58,7 @@
   
     <button mat-button type="submit">Enregister</button>
   
-  </form>
+  </form>-->
 
 </ng-container>
 

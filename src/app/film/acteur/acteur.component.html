@@ -2,13 +2,14 @@
 
 <ng-container *ngIf="acteur$ | async; else loadingTemplate">
   
-  <form [formGroup]="acteurForm" class="form-group">
+  <form [formGroup]="formGroup" class="form-group">
     <input hidden="true" id="id" type="text" formControlName="id" />
 
     <div class="form-element">
       <mat-form-field appearance="fill">
         <mat-label>Nom</mat-label>
         <input matInput formControlName="nom">
+        <mat-error *ngIf="formGroup.get('nom')?.hasError('required')">Le nom est requis</mat-error>
       </mat-form-field>
     </div>
 
@@ -16,18 +17,23 @@
       <mat-form-field appearance="fill">
         <mat-label>Age</mat-label>
         <input matInput formControlName="age">
+        <mat-error *ngIf="formGroup.get('age')?.hasError('required')">L'âge est requis</mat-error>
+        <mat-error *ngIf="formGroup.get('age')?.hasError('negativeNumber')">Pas d'âge négatif</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-element">
       <mat-form-field appearance="fill">
-        <mat-label>Nationalité</mat-label>
+        <mat-label>Nationalité <span class="flag-icon flag-icon-{{acteurInitial.nationalite | lowercase}} flag-icon-squared"></span></mat-label>
         <input matInput formControlName="nationalite">
+        <mat-error *ngIf="formGroup.get('nationalite')?.hasError('required')">La nationalité est requise</mat-error>
+        <mat-error *ngIf="formGroup.get('nationalite')?.hasError('maxlength')">La nationalité ne doit pas dépasser 2 caractères</mat-error>
       </mat-form-field>
     </div>
 
     <div class="action-buttons">
-      <button [disabled]="acteurForm.invalid" mat-raised-button color="primary" type="submit" (click)="onSubmitForm()">Enregistrer</button>
+      <mat-error *ngIf="formGroup.hasError('errorAgeItalienTropJeune')">Un italien doit avoir plus de 18 ans</mat-error>
+      <button [disabled]="formGroup.invalid || formGroup.hasError('errorAgeItalienTropJeune')" mat-raised-button color="primary" type="submit" (click)="onSubmitForm()">Enregistrer</button>
     </div>
   </form>
 

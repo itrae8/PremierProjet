@@ -18,4 +18,8 @@ export class ActeurService {
   getActeur(id: string): Observable<Acteur> {
     return this.httpClient.get<Acteur>(`${environment.urlBack}/acteur/${id}`);
   }
+
+  patchActeur(acteur: Acteur): Observable<Acteur>{
+    return this.httpClient.patch<Acteur>(`${environment.urlBack}/acteur`, acteur);
+  }
 }

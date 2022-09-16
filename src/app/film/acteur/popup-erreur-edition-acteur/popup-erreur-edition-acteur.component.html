@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Erreur lors de la modification</h2>
+<mat-dialog-content>
+  <h3>Impossible de modifier l'acteur {{data.acteur.nom}}</h3>
+  
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>OK</button>
+</div>

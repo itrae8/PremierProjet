@@ -11,9 +11,11 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { ActeurComponent } from './acteur/acteur.component';
 import { FilmRoutingModule } from './film-routing.module';
 import { FilmsComponent } from './films/films.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PopupErreurEditionActeurComponent } from './acteur/popup-erreur-edition-acteur/popup-erreur-edition-acteur.component';
 
 @NgModule({
-  declarations: [FilmsComponent, ActeurComponent],
+  declarations: [FilmsComponent, ActeurComponent, PopupErreurEditionActeurComponent],
   imports: [
     CommonModule,
     FilmRoutingModule,
@@ -27,6 +29,7 @@ import { FilmsComponent } from './films/films.component';
     ReactiveFormsModule,
     FormsModule,
     ColorPickerModule,
+    MatDialogModule
   ],
 })
 export class FilmModule {}
