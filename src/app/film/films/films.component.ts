@@ -1,12 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { delay, forkJoin, Observable, of, tap } from 'rxjs';
+import { ActeurService } from 'src/app/core/services/acteur.service';
+import { FilmService } from 'src/app/core/services/film.service';
 import { ActeurFilm } from 'src/app/model/acteur.model';
 import { Film, FilmListe } from 'src/app/model/film.model';
-import { ActeurService } from 'src/app/shared/acteur.service';
-import { FilmService } from 'src/app/shared/film.service';
 
 @Component({
   selector: 'app-films',
@@ -39,14 +38,17 @@ export class FilmsComponent implements OnInit {
 
   ngOnInit(): void {
     this.films$ = forkJoin({
-      films: sessionStorage.getItem('films') ? of(JSON.parse(sessionStorage.getItem('films')!) as Film[]) : this.filmService.getFilms(),
-      acteurs: sessionStorage.getItem('acteurs') ? of(JSON.parse(sessionStorage.getItem('acteurs')!) as ActeurFilm[]) :this.acteurService.getActeurs(),
+      films: sessionStorage.getItem('films')
+        ? of(JSON.parse(sessionStorage.getItem('films')!) as Film[])
+        : this.filmService.getFilms(),
+      acteurs: sessionStorage.getItem('acteurs')
+        ? of(JSON.parse(sessionStorage.getItem('acteurs')!) as ActeurFilm[])
+        : this.acteurService.getActeurs(),
     }).pipe(
-     // On met le délai sur la requete des films pour voir l'effet du SessionStorage
-     // Obligé de mettre delai 0 sinon le traitement va trop vite et le paginator est undefined
-     delay(0),
+      // On met le délai sur la requete des films pour voir l'effet du SessionStorage
+      // Obligé de mettre delai 0 sinon le traitement va trop vite et le paginator est undefined
+      delay(0),
       tap(({ films, acteurs }) => {
-        
         sessionStorage.setItem('films', JSON.stringify(films));
         sessionStorage.setItem('acteurs', JSON.stringify(acteurs));
 
@@ -84,18 +86,28 @@ export class FilmsComponent implements OnInit {
     let film: Film = {
       id: this.idFilmACreer,
       nom: this.nomDuFilmACreer,
-      acteurs: this.acteursDuFilmAcreer
+      acteurs: this.acteursDuFilmAcreer,
     };
-    this.filmService.postFilm(film).pipe(
-      tap(filmResultatRequete => {
-        let listActeurAvecNom = filmResultatRequete.acteurs.map(idActeur => 
-          this.listeActeurs.find(acteurListe => acteurListe.id === idActeur)!);
-        
-        let newData = [...this.dataSource.data, {...filmResultatRequete, acteurs : listActeurAvecNom}];
+    this.filmService
+      .postFilm(film)
+      .pipe(
+        tap((filmResultatRequete) => {
+          let listActeurAvecNom = filmResultatRequete.acteurs.map(
+            (idActeur) =>
+              this.listeActeurs.find(
+                (acteurListe) => acteurListe.id === idActeur
+              )!
+          );
 
-        // Nécessaire pour mettre à jour le tableau (sans réaffection de la dataSource, le tableau ne se met pas à jour)
-        this.dataSource.data = newData;
-      })
-    ).subscribe();
+          let newData = [
+            ...this.dataSource.data,
+            { ...filmResultatRequete, acteurs: listActeurAvecNom },
+          ];
+
+          // Nécessaire pour mettre à jour le tableau (sans réaffection de la dataSource, le tableau ne se met pas à jour)
+          this.dataSource.data = newData;
+        })
+      )
+      .subscribe();
   }
 }

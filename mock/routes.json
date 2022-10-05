@@ -1,0 +1,6 @@
+{
+    "/film/:id": "/film/:id",
+    "/films": "/film",
+    "/acteurs":"/acteurFilm",
+    "/acteur/:id": "/acteur/:id"
+}

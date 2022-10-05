@@ -1,0 +1,70 @@
+{
+    "acteur": [
+        {
+            "id": "al-pacino",
+            "nom": "Al Pacino",
+            "age": 81,
+            "nationalite": "IT"
+        },
+        {
+            "id": "brad-pitt",
+            "nom": "Brad Pitt",
+            "age": 58,
+            "nationalite": "US"
+        },
+        {
+            "id": "matt-damon",
+            "nom": "Matt Damon",
+            "age": 51,
+            "nationalite": "US"
+        }
+    ]
+,
+    "acteurFilm": [
+        {
+            "id": "al-pacino",
+            "nom": "Al Pacino"
+        },
+        {
+            "id": "brad-pitt",
+            "nom": "Brad Pitt"
+        },
+        {
+            "id": "matt-damon",
+            "nom": "Matt Damon"
+        }
+    ]
+,
+  "film": [
+    {
+      "id": "heat",
+      "nom": "Heat",
+      "acteurs" : [
+        "al-pacino"
+      ]
+    },
+    {
+      "id": "oceans-13" ,
+      "nom": "Ocean's 13",
+      "acteurs" : [
+        "al-pacino",
+        "brad-pitt",
+        "matt-damon"
+      ]
+    },
+    {
+      "id": "fight-club",
+      "nom": "Fight club",
+      "acteurs" : [
+        "brad-pitt"
+      ]
+    },
+    {
+      "id": "memoire-dans-la-peau",
+      "nom": "La mémoire dans la peau",
+      "acteurs" : [
+        "matt-damon"
+      ]
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, EMPTY, Observable, take, tap } from 'rxjs';
 import { Acteur, ActeurFilm } from 'src/app/model/acteur.model';
-import { ActeurService } from 'src/app/shared/acteur.service';
+import { ActeurService } from 'src/app/core/services/acteur.service';
 
 import { AbstractControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
