@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { delay, forkJoin, Observable, of, tap } from 'rxjs';
-import { ActeurService } from 'src/app/core/services/acteur.service';
-import { FilmService } from 'src/app/core/services/film.service';
-import { ActeurFilm } from 'src/app/model/acteur.model';
-import { Film, FilmListe } from 'src/app/model/film.model';
+import { ActeurService } from '../../core/services/acteur.service';
+import { FilmService } from '../../core/services/film.service';
+import { ActeurFilm } from '../../model/acteur.model';
+import { Film, FilmListe } from '../../model/film.model';
 
 @Component({
   selector: 'app-films',
