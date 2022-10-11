@@ -19,6 +19,6 @@ export class FilmService {
   }
 
   postFilm(film: Film): Observable<Film> {
-    return this.httpClient.post<Film>(`${environment.urlBack}/films`, film);
+    return this.httpClient.post<Film>(`${environment.urlBack}/film`, film);
   }
 }
