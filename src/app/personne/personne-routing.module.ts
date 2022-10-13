@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', component: ListePersonnesComponent,
     children: [
       { path: 'personne', component: PremierComponentComponent },
-      { path: 'personne/:nom', canActivate: [PersonneGuard], component: PremierComponentComponent },
+      //{ path: 'personne/:nom', canActivate: [PersonneGuard], component: PremierComponentComponent },
       { path: 'troisiemecomponent', component: TroisiemeComponent }
     ]
   }

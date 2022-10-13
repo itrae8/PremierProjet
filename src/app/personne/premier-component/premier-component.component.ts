@@ -21,7 +21,16 @@ export class PremierComponentComponent extends ComponentParentComponent implemen
   }
 
   override ngOnInit(): void {
-    this.route.paramMap.subscribe(
+
+    this.personne$ = this.personneService.getPersonneSelectionneeObs().pipe(
+      filter(personne => personne != null),
+      tap(personne => {
+          this.personne = personne!;
+          this.inputValue = this.personne.nom;
+      }
+      ));
+
+    /*this.route.paramMap.subscribe(
       paramRoute => {
         const personneNom = paramRoute.get('nom');
         if (personneNom) {
@@ -31,15 +40,7 @@ export class PremierComponentComponent extends ComponentParentComponent implemen
         }
 
       }
-    )
-
-    this.personne$ = this.personneService.getPersonneSelectionneeObs().pipe(
-      filter(personne => personne != null),
-      tap(personne => {
-          this.personne = personne!;
-          this.inputValue = this.personne.nom;
-      }
-      ));
+    )*/
 
     /* const state = window.history.state;
  
